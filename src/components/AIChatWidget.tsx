@@ -1,33 +1,55 @@
-
 import { useState } from 'react';
 import { Shield, MessageSquare, X } from 'lucide-react';
+import WelcomeMessage from './WelcomeMessage';
 
 const AIChatWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    // This fixed container holds everything and positions it in the bottom-right
+    <div className="fixed bottom-14 right-14 z-50">
+      
+      {/* 
+        This is the UI for the CLOSED state (!isOpen).
+      */}
       {!isOpen ? (
-        <button
-          onClick={() => setIsOpen(true)}
-          className="bg-bp-blue hover:bg-blue-600 text-white rounded-full p-4 shadow-2xl transition-all duration-300 hover:scale-110 group"
+        <div 
+          // --- CHANGE IS HERE ---
+          // Changed from flex-col/space-y-2 to flex/space-x-2.
+          // This makes the items line up horizontally with a gap.
+          // `items-end` now aligns them to the bottom of the row.
+          className="flex items-end space-x-2"
         >
-          <div className="relative">
-            <MessageSquare className="w-6 h-6" />
-            <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+          {/* Launcher Element 1: The Welcome Message (now on the left) */}
+          <div
+            onClick={() => setIsOpen(true)}
+            className="cursor-pointer transition-transform duration-300 ease-in-out hover:scale-105"
+          >
+            <WelcomeMessage />
           </div>
-        </button>
+
+          {/* Launcher Element 2: The circular icon button (now on the right) */}
+          <button
+            onClick={() => setIsOpen(true)}
+            className="bg-bp-blue hover:bg-blue-600 text-white rounded-full p-4 shadow-2xl transition-all duration-300 hover:scale-110"
+          >
+            <div className="relative">
+              <MessageSquare className="w-6 h-6" />
+              <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+            </div>
+          </button>
+        </div>
       ) : (
+      
+      /* 
+        This is the UI for the OPEN state (isOpen).
+      */
         <div className="bg-white rounded-2xl shadow-2xl w-80 h-96 flex flex-col border border-gray-200">
           {/* Header */}
           <div className="bg-bp-blue text-white p-4 rounded-t-2xl flex items-center justify-between">
             <div className="flex items-center space-x-3">
               <div className="relative">
                 <Shield className="w-8 h-8 text-white" />
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                  <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
-                  <div className="w-3 h-0.5 bg-white rounded-full mt-0.5 mx-auto"></div>
-                </div>
               </div>
               <div>
                 <h3 className="font-poppins font-semibold">BullyingProof AI</h3>
@@ -43,17 +65,8 @@ const AIChatWidget = () => {
           </div>
 
           {/* Chat Content */}
-          <div className="flex-1 p-4 flex flex-col justify-center">
-            <div className="bg-bp-light-blue rounded-2xl p-4 mb-4 max-w-xs">
-              <p className="text-bp-blue font-poppins text-sm">
-                Ready to help you, my friend. 😊
-              </p>
-            </div>
-            <div className="bg-bp-light-blue rounded-2xl p-4 max-w-xs">
-              <p className="text-bp-blue font-poppins text-sm">
-                I'm here to listen and provide support. How can I help you today?
-              </p>
-            </div>
+          <div className="flex-1 p-4 flex flex-col justify-start overflow-y-auto">
+            {/* Initial messages inside the chat window */}
           </div>
 
           {/* Input Area */}

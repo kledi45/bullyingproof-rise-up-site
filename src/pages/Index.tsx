@@ -1,4 +1,3 @@
-
 import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
 import ActivitiesSection from '@/components/ActivitiesSection';
@@ -7,9 +6,9 @@ import Footer from '@/components/Footer';
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-white font-poppins">
+    <div className="min-h-screen font-poppins" style={{ background: '#e0e1e3' }}>
       <Header />
-      <main>
+      <main >
         <HeroSection />
         <ActivitiesSection />
       </main>

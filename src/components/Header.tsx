@@ -1,19 +1,16 @@
-
-import { Shield } from 'lucide-react';
-
 const Header = () => {
   return (
     <header className="bg-bp-blue text-white py-4 px-6 shadow-lg">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <div className="flex items-center space-x-3">
           <div className="relative">
-            <Shield className="w-10 h-10 text-white" />
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-              <div className="w-2 h-2 bg-white rounded-full"></div>
-              <div className="w-4 h-1 bg-white rounded-full mt-0.5 mx-auto"></div>
-            </div>
+            <img
+              src="/images/logo.png"
+              alt="BullyingProof Logo"
+              className="w-20 h-20 object-contain"
+            />
           </div>
-          <h1 className="text-2xl font-bold font-poppins">BullyingProof</h1>
+          <h1 className="text-2xl font-bold font-poppins">BullyingProof - Community</h1>
         </div>
         
         <nav className="hidden md:flex space-x-8">
